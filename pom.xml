@@ -13,7 +13,15 @@
         <module>Thread</module>
         <module>ClassLoader</module>
         <module>java8</module>
+        <module>CheckReqNo</module>
     </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+        <relativePath/>
+    </parent>
 
     <build>
         <plugins>
