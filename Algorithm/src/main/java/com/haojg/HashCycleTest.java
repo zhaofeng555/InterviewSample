@@ -5,11 +5,17 @@ package com.haojg;
  * @Date: 2018/7/2 16:18
  */
 public class HashCycleTest {
-    class ListNode{
+    static class ListNode{
+        public ListNode(int value, ListNode next){
+            this.value=value;
+            this.next=next;
+        }
+
         int value;
         ListNode next;
     }
-    public boolean hasCycle(ListNode head){
+
+    public static boolean hasCycle(ListNode head){
         if(head == null){
             return false;
         }
@@ -22,5 +28,18 @@ public class HashCycleTest {
             l2 = l2.next.next;
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        ListNode n4 = new ListNode(2, null);
+        ListNode n3 = new ListNode(3, n4);
+        ListNode n2 = new ListNode(2, n3);
+        ListNode n1 = new ListNode(1, n2);
+
+        n4.value=2;
+        n4.next=n2;
+
+        boolean b = hasCycle(n1);
+        System.out.println(b);
     }
 }
