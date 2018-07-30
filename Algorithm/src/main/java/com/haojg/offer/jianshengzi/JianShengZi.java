@@ -1,4 +1,4 @@
-package com.haojg.offer;
+package com.haojg.offer.jianshengzi;
 
 /**
  * @Author: 146477

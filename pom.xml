@@ -14,6 +14,7 @@
         <module>ClassLoader</module>
         <module>java8</module>
         <module>CheckReqNo</module>
+        <module>DesignPartten</module>
     </modules>
 
     <parent>

@@ -1,4 +1,4 @@
-package com.haojg;
+package com.haojg.lambda;
 
 @FunctionalInterface
 interface Interface3{

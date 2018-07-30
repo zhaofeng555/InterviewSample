@@ -1,4 +1,4 @@
-package com.haojg;
+package com.haojg.lambda;
 
 import java.text.DecimalFormat;
 import java.util.function.Function;

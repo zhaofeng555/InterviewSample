@@ -1,4 +1,4 @@
-package com.haojg.offer;
+package com.haojg.offer.numberof1;
 
 /**
  * @Author: 146477
