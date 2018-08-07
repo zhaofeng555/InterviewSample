@@ -15,6 +15,7 @@
         <module>CheckReqNo</module>
         <module>DesignPartten</module>
         <module>mqtt</module>
+        <module>MultiThread</module>
     </modules>
 
     <parent>

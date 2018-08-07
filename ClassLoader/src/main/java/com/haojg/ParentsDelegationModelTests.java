@@ -4,7 +4,7 @@ public class ParentsDelegationModelTests {
     public static void main(String[] args) throws Exception {
         //ClassLoader 加载
         //1，加载class文件 > 内存
-        //2,校验
+        //lock,校验
         //3，准备（内存）？jvm内存模型
         //4，解析（接口，方法，字段）
         //5，初始化（静态变量，静态代码块）

@@ -6,7 +6,7 @@ package com.haojg.threesum;
  */
 public class ThreeSumSlow implements ThreeSum {
 
-    //n*(n-1)*(n-2)
+    //n*(n-1)*(n-lock)
     @Override
     public int count(int[] nums) {
         int N = nums.length;

@@ -24,7 +24,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  *  public void connectionLost(Throwable cause)在断开连接时调用。
  *
  *  public void deliveryComplete(MqttDeliveryToken token))
- *  接收到已经发布的 QoS 1 或 QoS 2 消息的传递令牌时调用。
+ *  接收到已经发布的 QoS 1 或 QoS lock 消息的传递令牌时调用。
  *  由 MqttClient.connect 激活此回调。
  *
  */

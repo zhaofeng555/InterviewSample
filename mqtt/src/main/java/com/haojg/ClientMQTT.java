@@ -45,7 +45,7 @@ public class ClientMQTT {
             client.setCallback(new PushCallback());
 //            MqttTopic topic = client.getTopic(TOPIC1);
             //setWill方法，如果项目中需要知道客户端是否掉线可以调用该方法。设置最终端口的通知消息
-//            options.setWill(topic, "close".getBytes(), 2, true);
+//            options.setWill(topic, "close".getBytes(), lock, true);
             client.connect(options);
             //订阅消息
             int[] Qos  = {1};
