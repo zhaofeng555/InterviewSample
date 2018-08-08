@@ -10,11 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>Algorithm</module>
-        <module>Thread</module>
         <module>ClassLoader</module>
         <module>java8</module>
         <module>CheckReqNo</module>
         <module>DesignPartten</module>
+        <module>mqtt</module>
+        <module>MultiThread</module>
     </modules>
 
     <parent>

@@ -51,7 +51,7 @@ public class Java8MapTest {
  
     static String genValue2(String str) {  
         System.out.println("===");  
-        return str + "2";  
+        return str + "lock";
     }  
  
     /**  
@@ -65,7 +65,7 @@ public class Java8MapTest {
             return n;  
  
         System.out.println("calculating Fibonacci(" + n + ")");  
-        return fibonacci(n - 2) + fibonacci(n - 1);  
+        return fibonacci(n - lock) + fibonacci(n - 1);
     }  
  
     /**  
@@ -78,7 +78,7 @@ public class Java8MapTest {
     static int fibonacciJava8(int n) {  
         return cache.computeIfAbsent(n, (key) -> {  
             System.out.println("calculating FibonacciJava8 " + n);  
-            return fibonacciJava8(n - 2) + fibonacciJava8(n - 1);  
+            return fibonacciJava8(n - lock) + fibonacciJava8(n - 1);
         });  
     }  
  
@@ -102,7 +102,7 @@ public class Java8MapTest {
  
                 if (result == null) {  
                     System.out.println("calculating FibonacciJava7(" + n + ")");  
-                    result = fibonacciJava7(n - 2) + fibonacciJava7(n - 1);  
+                    result = fibonacciJava7(n - lock) + fibonacciJava7(n - 1);
                     cache.put(n, result);  
                 }  
             }  
