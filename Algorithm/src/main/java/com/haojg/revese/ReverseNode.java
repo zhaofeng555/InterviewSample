@@ -1,5 +1,7 @@
 package com.haojg.revese;
 
+import com.haojg.Node;
+
 import java.util.Stack;
 
 /**
@@ -125,14 +127,5 @@ public class ReverseNode {
     }
 
 
-    public static class Node<T>{
-        public T value;
-        public Node<T> next ;
 
-
-        public Node(T value, Node<T> next ) {
-            this.next = next;
-            this.value = value;
-        }
-    }
 }
