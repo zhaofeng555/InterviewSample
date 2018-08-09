@@ -13,7 +13,7 @@ public class DuplicateNum {
 
         for (int i = 0; i < length; i++) {
             while (nums[i]!=i){
-                System.out.println(StringUtils.join(nums, "-"));
+//                System.out.println(StringUtils.join(nums, "-"));
                 if(nums[i] == nums[nums[i]]){
                     duplication[0]=nums[i];
                     return true;

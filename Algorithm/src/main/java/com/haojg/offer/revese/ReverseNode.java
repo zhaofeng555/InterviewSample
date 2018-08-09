@@ -1,4 +1,4 @@
-package com.haojg.revese;
+package com.haojg.offer.revese;
 
 import java.util.Stack;
 

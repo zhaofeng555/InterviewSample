@@ -79,11 +79,9 @@ public class LambdaMapReduce {
 //                .map(User::getAge)
 //                .collect(Averager::new, Averager::accept, Averager::combine);
 //
-//
-//
 //        System.out.println("Average age of male members: "
 //                + averageCollect.average());
-//
+
         //获取年龄大于12的用户列表 
         List<User> list = users.parallelStream().filter(p -> p.age > 12) 
                 .collect(Collectors.toList()); 
@@ -97,20 +95,20 @@ public class LambdaMapReduce {
  
         //按性别获取用户名称 
         Map<User.Sex, List<String>> map2 = users.stream() 
-                .collect( 
-                        Collectors.groupingBy( 
+                .collect( Collectors.groupingBy(
                                 User::getGender, 
-                                Collectors.mapping(User::getName, 
-                                        Collectors.toList()))); 
+                                Collectors.mapping(User::getName,Collectors.toList())
+                ));
         System.out.println(map2); 
-         
+
         //按性别求年龄的总和 
         Map<User.Sex, Integer> map3 = users.stream().collect( 
                 Collectors.groupingBy(User::getGender, 
-                        Collectors.reducing(0, User::getAge, Integer::sum))); 
+                        Collectors.reducing(0, User::getAge, Integer::sum)));
  
-        System.out.println(map3); 
-         
+        System.out.println("按性别求年龄的总和");
+        System.out.println(map3);
+
         //按性别求年龄的平均值 
         Map<User.Sex, Double> map4 = users.stream().collect( 
                 Collectors.groupingBy(User::getGender, 
@@ -122,7 +120,7 @@ public class LambdaMapReduce {
     // 注意，reduce操作每处理一个元素总是创建一个新值， 
     // Stream.reduce适用于返回单个结果值的情况 
     //获取所有用户的平均年龄 
-    private static void reduceAvg() { 
+    private static void reduceAvg() {
         // mapToInt的pipeline后面可以是average,max,min,count,sum 
         double avg = users.parallelStream().mapToInt(User::getAge)  
                 .average().getAsDouble(); 
