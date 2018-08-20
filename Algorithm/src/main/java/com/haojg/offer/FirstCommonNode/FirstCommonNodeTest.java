@@ -1,5 +1,7 @@
 package com.haojg.offer.FirstCommonNode;
 
+import com.haojg.offer.ListNode;
+
 public class FirstCommonNodeTest {
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2)
     {
