@@ -17,6 +17,7 @@
         <module>mqtt</module>
         <module>MultiThread</module>
         <module>webflux</module>
+        <module>Misc</module>
     </modules>
 
     <parent>
