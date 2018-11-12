@@ -12,7 +12,16 @@ public class TestMain {
     private Map<String, Boolean> jobReadWriteFlagMap = new HashMap<>();
 
     public static void main(String[] args) {
-        new TestMain().test();
+        new TestMain().test2();
+    }
+
+    private static void test2(){
+        SubTest1 t1 = new SubTest1();
+        t1.setFlag(true);
+        SubTest2 t2 = new SubTest2();
+
+        System.out.println(t1.isFlag());
+        System.out.println(t2.isFlag());
     }
 
     private static void test1() {
@@ -35,6 +44,7 @@ public class TestMain {
     }
 
     public void test(){
+
         jobReadWriteFlagMap.put("hello", false);
         new Thread(()->{
             while (true){
