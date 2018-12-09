@@ -5,7 +5,7 @@ package java.lang;
  * @Date: 2018/8/7 14:36
  */
 /*
-public class String {
+public class StringError {
     String s="";
 
     public static void main(String[] args) {

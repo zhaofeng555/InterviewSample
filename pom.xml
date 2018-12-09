@@ -15,7 +15,6 @@
         <module>CheckReqNo</module>
         <module>DesignPartten</module>
         <module>mqtt</module>
-        <module>MultiThread</module>
         <module>webflux</module>
         <module>Misc</module>
     </modules>

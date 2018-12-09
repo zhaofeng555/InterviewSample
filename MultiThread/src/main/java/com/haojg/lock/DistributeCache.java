@@ -1,14 +1,12 @@
 package com.haojg.lock;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-
 /**
  * 分布式进程消费共享消息
- *
- * @author coshaho
  */
 public class DistributeCache {
     private static List<String> msgCache = new ArrayList<String>();
