@@ -6,17 +6,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class QuickSort<T extends Comparable<T>> extends Sort<T>
-{
+public class QuickSort<T extends Comparable<T>> extends Sort<T> {
     @Override
-    public void sort(T[] nums)
-    {
+    public void sort(T[] nums) {
         shuffle(nums);
         sort(nums, 0, nums.length - 1);
     }
 
-    protected void sort(T[] nums, int l, int h)
-    {
+    protected void sort(T[] nums, int l, int h) {
         if (h <= l) {
             return;
         }
@@ -25,20 +22,22 @@ public class QuickSort<T extends Comparable<T>> extends Sort<T>
         sort(nums, j + 1, h);
     }
 
-    private void shuffle(T[] nums)
-    {
+    private void shuffle(T[] nums) {
         List<Comparable> list = Arrays.asList(nums);
         Collections.shuffle(list);
         list.toArray(nums);
     }
 
-    private int partition(T[] nums, int l, int h)
-    {
+    private int partition(T[] nums, int l, int h) {
         int i = l, j = h + 1;
         T v = nums[l];
         while (true) {
-            while (less(nums[++i], v) && i != h) {};
-            while (less(v, nums[--j]) && j != l) {};
+            while (less(nums[++i], v) && i != h) {
+            }
+            ;
+            while (less(v, nums[--j]) && j != l) {
+            }
+            ;
             if (i >= j) {
                 break;
             }
@@ -48,8 +47,7 @@ public class QuickSort<T extends Comparable<T>> extends Sort<T>
         return j;
     }
 
-    public T select(T[] nums, int k)
-    {
+    public T select(T[] nums, int k) {
         int l = 0, h = nums.length - 1;
         while (h > l) {
             int j = partition(nums, l, h);

@@ -15,12 +15,12 @@ public class SubTest2 extends AbstractTest {
     }
 
     public List<String> testList2() {
-        list2= new ArrayList<>();
+        list2 = new ArrayList<>();
         System.out.println(list2.hashCode());
         return list2;
     }
 
-    public Object getObj(){
+    public Object getObj() {
         return obj;
     }
 }

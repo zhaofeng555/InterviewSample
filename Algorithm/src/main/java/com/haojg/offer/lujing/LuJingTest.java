@@ -9,13 +9,13 @@ public class LuJingTest {
     private int rows;
     private int cols;
 
-    static char[] array={
-            'a','b','t','g',
-            'c','f','c','s',
-            'j','d','e','h'};
+    static char[] array = {
+            'a', 'b', 't', 'g',
+            'c', 'f', 'c', 's',
+            'j', 'd', 'e', 'h'};
 
     public static void main(String[] args) {
-        char[] searchArr={'b','f','c','e'};
+        char[] searchArr = {'b', 'f', 'c', 'e'};
         LuJingTest lj = new LuJingTest();
         boolean b = lj.hasPath(array, 3, 4, searchArr);
         System.out.println(b);

@@ -2,11 +2,9 @@ package com.haojg.heap;
 
 import org.junit.Assert;
 
-public class HeapTest
-{
+public class HeapTest {
     @org.junit.Test
-    public void test()
-    {
+    public void test() {
         Heap<Integer> heap = new Heap<>(10);
         heap.insert(5);
         heap.insert(4);

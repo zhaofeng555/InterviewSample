@@ -48,7 +48,7 @@ public class ClientMQTT {
 //            options.setWill(topic, "close".getBytes(), lock, true);
             client.connect(options);
             //订阅消息
-            int[] Qos  = {1};
+            int[] Qos = {1};
             String[] topic1 = {TOPIC1};
             client.subscribe(topic1, Qos);
 

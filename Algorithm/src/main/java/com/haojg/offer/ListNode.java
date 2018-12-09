@@ -3,6 +3,7 @@ package com.haojg.offer;
 public class ListNode {
     public ListNode() {
     }
+
     public ListNode(int value) {
         this.value = value;
     }
@@ -17,6 +18,6 @@ public class ListNode {
 
     @Override
     public String toString() {
-        return "[ListNode: curValue="+value+"]";
+        return "[ListNode: curValue=" + value + "]";
     }
 }

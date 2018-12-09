@@ -34,18 +34,19 @@ public class ZooKeeperLock implements Lock, Watcher {
 
     /**
      * 创建分布式锁,使用前请确认config配置的zookeeper服务可用
-     * @param server 127.0.0.1:2181
+     *
+     * @param server   127.0.0.1:2181
      * @param lockName 竞争资源标志,lockName中不能包含单词lock
      */
-    public ZooKeeperLock(String server, String lockName){
+    public ZooKeeperLock(String server, String lockName) {
         this.lockName = lockName;
         // 创建一个与服务器的连接
         try {
             zk = initZk(server);
             Stat stat = zk.exists(root, false);
-            if(stat == null){
+            if (stat == null) {
                 // 创建根节点
-                zk.create(root, data, ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.PERSISTENT);
+                zk.create(root, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
         } catch (Exception e) {
             throw new LockException(e);
@@ -57,7 +58,7 @@ public class ZooKeeperLock implements Lock, Watcher {
      */
     @Override
     public void process(WatchedEvent event) {
-        if(this.latch != null) {
+        if (this.latch != null) {
             this.latch.countDown();
         }
     }
@@ -65,9 +66,9 @@ public class ZooKeeperLock implements Lock, Watcher {
     @Override
     public void lock() {
         try {
-            if(!tryLock()){
+            if (!tryLock()) {
                 boolean locked = waitForLock(waitNode, SESSION_TIMEOUT, TimeUnit.MILLISECONDS);//等待锁
-                if(!locked){
+                if (!locked) {
                     logger.error("can not lock...");
                 }
             }
@@ -79,11 +80,11 @@ public class ZooKeeperLock implements Lock, Watcher {
     @Override
     public boolean tryLock() {
         try {
-            if(lockName.contains(SPLITSTR)){
+            if (lockName.contains(SPLITSTR)) {
                 throw new LockException("lockName can not contains \\u000B");
             }
             //创建临时子节点
-            myZnode = zk.create(root + "/" + lockName + SPLITSTR, data, ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode.EPHEMERAL_SEQUENTIAL);
+            myZnode = zk.create(root + "/" + lockName + SPLITSTR, data, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
             //取出所有子节点
             List<String> subNodes = zk.getChildren(root, false);
@@ -91,13 +92,13 @@ public class ZooKeeperLock implements Lock, Watcher {
             List<String> lockObjNodes = new ArrayList<>();
             for (String node : subNodes) {
                 String _node = node.split(SPLITSTR)[0];
-                if(_node.equals(lockName)){
+                if (_node.equals(lockName)) {
                     lockObjNodes.add(node);
                 }
             }
             Collections.sort(lockObjNodes);
 
-            if(myZnode.equals(root+"/"+lockObjNodes.get(0))){
+            if (myZnode.equals(root + "/" + lockObjNodes.get(0))) {
                 //如果是最小的节点,则表示取得锁
                 return true;
             }
@@ -122,7 +123,7 @@ public class ZooKeeperLock implements Lock, Watcher {
     private boolean waitForLock(String lower, long waitTime, TimeUnit unit) throws InterruptedException, KeeperException {
         Stat stat = zk.exists(root + "/" + lower, true);
         //判断比自己小一个数的节点是否存在,如果不存在则无需等待锁,同时注册监听
-        if(stat != null){
+        if (stat != null) {
             this.latch = new CountDownLatch(1);
             this.latch.await(waitTime, unit);
             this.latch = null;
@@ -133,7 +134,7 @@ public class ZooKeeperLock implements Lock, Watcher {
     @Override
     public void unlock() {
         try {
-            zk.delete(myZnode,-1);
+            zk.delete(myZnode, -1);
             myZnode = null;
         } catch (Exception e) {
             throw new LockException(e);
@@ -142,7 +143,7 @@ public class ZooKeeperLock implements Lock, Watcher {
 
     private synchronized ZooKeeper initZk(String server) {
         try {
-            if(zk == null){
+            if (zk == null) {
                 zk = new ZooKeeper(server, SESSION_TIMEOUT, this);
             }
         } catch (IOException e) {
@@ -163,10 +164,12 @@ public class ZooKeeperLock implements Lock, Watcher {
 
     private class LockException extends RuntimeException {
         private static final long serialVersionUID = 1L;
-        private LockException(String e){
+
+        private LockException(String e) {
             super(e);
         }
-        private LockException(Exception e){
+
+        private LockException(Exception e) {
             super(e);
         }
     }

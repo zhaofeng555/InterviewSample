@@ -2,12 +2,10 @@ package com.haojg.sort.merge;
 
 import com.haojg.sort.Sort;
 
-public abstract class MergeSort<T extends Comparable<T>> extends Sort<T>
-{
+public abstract class MergeSort<T extends Comparable<T>> extends Sort<T> {
     protected T[] aux;
 
-    protected void merge(T[] nums, int l, int m, int h)
-    {
+    protected void merge(T[] nums, int l, int m, int h) {
         int i = l, j = m + 1;
 
         for (int k = l; k <= h; k++) {

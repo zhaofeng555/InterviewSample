@@ -4,17 +4,17 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor(staticName="newInstance")
+@RequiredArgsConstructor(staticName = "newInstance")
 public class RequiredArgsConstructorExample {
 
     private final String name;
-    
+
     @NonNull
     @Getter
     private String age;
-    
+
     private String sex;
-    
+
     public static void main(String[] args) {
         RequiredArgsConstructorExample race1 = new RequiredArgsConstructorExample("lisi", "18");
         System.out.println(race1.getAge());

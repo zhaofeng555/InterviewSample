@@ -30,7 +30,7 @@ public class FindMinNumStackTest {
 
     public static void main(String[] args) {
         FindMinNumStackTest fmn = new FindMinNumStackTest();
-        int num[]={5,3,6,8,2,9};
+        int num[] = {5, 3, 6, 8, 2, 9};
         for (int i = 0; i < num.length; i++) {
             fmn.push(num[i]);
         }

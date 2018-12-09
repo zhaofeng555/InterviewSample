@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class CleanUpExample {
-    
+
     @SneakyThrows({FileNotFoundException.class, Exception.class})
     public static void main(String[] args) {
         File file = new File("C:/Users/wang2/Desktop/11.jpg");
@@ -17,10 +17,10 @@ public class CleanUpExample {
         FileInputStream is = new FileInputStream(file);
         @Cleanup
         FileOutputStream os = new FileOutputStream(new File("C:/Users/wang2/Desktop/111.jpg"));
-        
+
         byte[] buffer = new byte[1024];
         int length = 0;
-        while((length = is.read(buffer)) != -1){
+        while ((length = is.read(buffer)) != -1) {
             os.write(buffer, 0, length);
         }
     }

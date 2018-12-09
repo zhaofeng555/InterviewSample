@@ -2,11 +2,9 @@ package com.haojg.sort.quick;
 
 import com.haojg.sort.quick.QuickSort;
 
-public class ThreeWayQuickSort<T extends Comparable<T>> extends QuickSort<T>
-{
+public class ThreeWayQuickSort<T extends Comparable<T>> extends QuickSort<T> {
     @Override
-    protected void sort(T[] nums, int l, int h)
-    {
+    protected void sort(T[] nums, int l, int h) {
         if (h <= l) {
             return;
         }
@@ -31,16 +29,16 @@ public class ThreeWayQuickSort<T extends Comparable<T>> extends QuickSort<T>
         Integer v = 9;
         System.out.println(v.compareTo(8));
 
-        Integer nums[]={5,5,2,1,3,9,8,7,9};
+        Integer nums[] = {5, 5, 2, 1, 3, 9, 8, 7, 9};
         for (Integer num : nums) {
-            System.out.print(num +" , ");
+            System.out.print(num + " , ");
         }
         System.out.println();
 
-        new ThreeWayQuickSort().sort(nums, 0, nums.length-1);
+        new ThreeWayQuickSort().sort(nums, 0, nums.length - 1);
 
         for (Integer num : nums) {
-            System.out.print(num +" , ");
+            System.out.print(num + " , ");
         }
     }
 }

@@ -8,13 +8,13 @@ import java.util.Stack;
 public class PrintListTest {
     public static ArrayList<Integer> printListFromTailToHead1(Node<Integer> listNode) {
         Stack<Integer> stack = new Stack<>();
-        while (listNode != null){
+        while (listNode != null) {
             stack.add(listNode.value);
             listNode = listNode.next;
         }
-        
+
         ArrayList<Integer> ret = new ArrayList<>();
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             ret.add(stack.pop());
         }
         return ret;
@@ -29,7 +29,7 @@ public class PrintListTest {
         return ret;
     }
 
-    private static Node<Integer> generateNodeList(){
+    private static Node<Integer> generateNodeList() {
         Node<Integer> a = new Node<>(1, null);
         Node<Integer> b = new Node<>(2, a);
         Node<Integer> c = new Node<>(3, b);

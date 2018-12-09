@@ -8,7 +8,7 @@ import java.util.Stack;
  * Function: 三种方式反向打印单向链表
  *
  * @author crossoverJie
- *         Date: 10/02/2018 16:14
+ * Date: 10/02/2018 16:14
  * @since JDK 1.8
  */
 public class ReverseNode {
@@ -27,7 +27,7 @@ public class ReverseNode {
 //        rn.recNode(generateNodeList());
     }
 
-    private static Node<String> generateNodeList(){
+    private static Node<String> generateNodeList() {
         Node<String> a = new Node<>("a", null);
         Node<String> b = new Node<>("b", a);
         Node<String> c = new Node<>("c", b);
@@ -36,11 +36,11 @@ public class ReverseNode {
         return e;
     }
 
-    private static void print(Node<String> node){
+    private static void print(Node<String> node) {
         //遍历新链表
-        while (node != null){
-            System.out.print(node.value+" => ");
-            node = node.next ;
+        while (node != null) {
+            System.out.print(node.value + " => ");
+            node = node.next;
         }
         System.out.println();
         System.out.println("========end=======");
@@ -49,25 +49,26 @@ public class ReverseNode {
 
     /**
      * 利用栈的先进后出特性
+     *
      * @param node
      */
-    public void reverseNode1(Node node){
+    public void reverseNode1(Node node) {
 
         System.out.println("====翻转之前====");
 
-        Stack<Node> stack = new Stack<>() ;
-        while (node != null){
+        Stack<Node> stack = new Stack<>();
+        while (node != null) {
 
             System.out.print(node.value + "===>");
 
-            stack.push(node) ;
-            node = node.next ;
+            stack.push(node);
+            node = node.next;
         }
 
         System.out.println("");
 
         System.out.println("====翻转之后====");
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             System.out.print(stack.pop().value + "===>");
         }
 
@@ -76,20 +77,21 @@ public class ReverseNode {
 
     /**
      * 利用头插法插入链表
+     *
      * @param head
      */
-    public  void reverseNode(Node head) {
+    public void reverseNode(Node head) {
         if (head == null) {
-            return ;
+            return;
         }
 
         //最终翻转之后的 Node
-        Node node ;
+        Node node;
 
         Node pre = head;
         Node cur = head.next;
-        Node next ;
-        while(cur != null){
+        Node next;
+        while (cur != null) {
             next = cur.next;
 
             //链表的头插法
@@ -103,29 +105,29 @@ public class ReverseNode {
 
         System.out.println("翻转之后的：");
         //遍历新链表
-        while (node != null){
-            System.out.print(node.value+" => ");
-            node = node.next ;
+        while (node != null) {
+            System.out.print(node.value + " => ");
+            node = node.next;
         }
     }
 
 
     /**
      * 递归
+     *
      * @param node
      */
-    public void recNode(Node node){
+    public void recNode(Node node) {
 
-        if (node == null){
-            return ;
+        if (node == null) {
+            return;
         }
 
-        if (node.next != null){
-            recNode(node.next) ;
+        if (node.next != null) {
+            recNode(node.next);
         }
-        System.out.print(node.value+"===>");
+        System.out.print(node.value + "===>");
     }
-
 
 
 }

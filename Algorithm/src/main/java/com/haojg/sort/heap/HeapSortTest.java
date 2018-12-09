@@ -15,12 +15,12 @@ public class HeapSortTest {
         Integer[] numsAfter = {0, Integer.MIN_VALUE, -2, -1, 0, 2, 3, 4, 5, 6, Integer.MAX_VALUE};
         HeapSort<Integer> sort = new HeapSort<>();
         for (int i = 1; i < numsBefore.length; i++) {
-            System.out.print(numsBefore[i]+ " , ");
+            System.out.print(numsBefore[i] + " , ");
         }
         System.out.println();
         sort.sort(numsBefore);
         for (int i = 1; i < numsBefore.length; i++) {
-            System.out.print(numsBefore[i]+ " , ");
+            System.out.print(numsBefore[i] + " , ");
         }
         System.out.println();
         Assert.assertArrayEquals(numsBefore, numsAfter);

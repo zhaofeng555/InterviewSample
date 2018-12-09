@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
  * Function:校验是否有 redis 配置
  *
  * @author crossoverJie
- *         Date: 2017/8/1 00:22
+ * Date: 2017/8/1 00:22
  * @since JDK 1.8
  */
 public class CheckReqCondition implements Condition {
@@ -26,10 +26,10 @@ public class CheckReqCondition implements Condition {
         //如果没有加入redis配置的就返回false
         String property = context.getEnvironment().getProperty("spring.redis.host");
         String clusterProperty = context.getEnvironment().getProperty("spring.redis.cluster.nodes");
-        if (StringUtils.isEmpty(property) && StringUtils.isEmpty(clusterProperty)){
+        if (StringUtils.isEmpty(property) && StringUtils.isEmpty(clusterProperty)) {
             logger.warn("Need to configure redis!");
-            return false ;
-        }else {
+            return false;
+        } else {
             return true;
         }
 

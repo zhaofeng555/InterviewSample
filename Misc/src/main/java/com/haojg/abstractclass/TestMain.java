@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class TestMain {
-//    private ConcurrentHashMap<String, Boolean> jobReadWriteFlagMap = new ConcurrentHashMap<>();
+    //    private ConcurrentHashMap<String, Boolean> jobReadWriteFlagMap = new ConcurrentHashMap<>();
     private Map<String, Boolean> jobReadWriteFlagMap = new HashMap<>();
 
     public static void main(String[] args) {
@@ -34,10 +34,10 @@ public class TestMain {
         System.out.println(s2.hello.hashCode());
     }
 
-    public void test(){
+    public void test() {
         jobReadWriteFlagMap.put("hello", false);
-        new Thread(()->{
-            while (true){
+        new Thread(() -> {
+            while (true) {
                 try {
                     TimeUnit.SECONDS.sleep(2L);
                 } catch (InterruptedException e) {
@@ -48,8 +48,8 @@ public class TestMain {
             }
         }).start();
 
-        new Thread(()->{
-            while (true){
+        new Thread(() -> {
+            while (true) {
                 Boolean s = jobReadWriteFlagMap.get("hello");
                 System.out.println(s);
                 try {

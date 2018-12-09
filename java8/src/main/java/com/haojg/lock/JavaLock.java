@@ -9,32 +9,34 @@ public class JavaLock {
 
     }
 
-    void testJava5Lock(){
+    void testJava5Lock() {
         ReentrantLock rl = new ReentrantLock();
         rl.lock();
-        try{
+        try {
 
-        }finally {
+        } finally {
             rl.unlock();
         }
 
     }
 
-    void testJava5ReadWriteLock(){
+    void testJava5ReadWriteLock() {
         ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
         rwl.writeLock().lock();
-        try{
+        try {
 
-        }finally {
+        } finally {
             rwl.writeLock().unlock();
         }
 
     }
 }
+
 class Point {
     private double x, y;
 
     private final StampedLock sl = new StampedLock();
+
     void move(double deltaX, double deltaY) { // an exclusively locked method
         long stamp = sl.writeLock();
         try {
@@ -44,6 +46,7 @@ class Point {
             sl.unlockWrite(stamp);
         }
     }
+
     //下面看看乐观读锁案例
     double distanceFromOrigin() { // A read-only method
         long stamp = sl.tryOptimisticRead(); //获得一个乐观读锁
@@ -59,6 +62,7 @@ class Point {
         }
         return Math.sqrt(currentX * currentX + currentY * currentY);
     }
+
     //下面是悲观读锁案例
     void moveIfAtOrigin(double newX, double newY) { // upgrade
         // Could instead start with optimistic, not read mode
@@ -71,8 +75,7 @@ class Point {
                     x = newX; //进行状态改变
                     y = newY; //进行状态改变
                     break;
-                }
-                else { //如果不能成功转换为写锁
+                } else { //如果不能成功转换为写锁
                     sl.unlockRead(stamp); //我们显式释放读锁
                     stamp = sl.writeLock(); //显式直接进行写锁 然后再通过循环再试
                 }

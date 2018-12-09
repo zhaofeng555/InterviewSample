@@ -1,4 +1,4 @@
-package com.haojg;
+package com.haojg.signal;
 
 import sun.misc.Signal;
 import sun.misc.SignalHandler;

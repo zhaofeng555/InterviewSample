@@ -7,18 +7,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SetterExample {
-    
-    @Getter(value=AccessLevel.PRIVATE)@Setter
+
+    @Getter(value = AccessLevel.PRIVATE)
+    @Setter
     private String name;
-    
+
     //onMethod=@__({@AnnotationsHere})
-    @Setter(onMethod=@__({@Deprecated}))
+    @Setter(onMethod = @__({@Deprecated}))
     private String age;
-    
+
     //onParam=@__({@AnnotationsHere})
-    @Setter(onParam=@__({}))
+    @Setter(onParam = @__({}))
     private String sex;
-    
+
     public static void main(String[] args) {
         SetterExample se = new SetterExample();
         se.setName("zhangsan");

@@ -28,18 +28,20 @@ public class RebuildTreeTest {
     }
 
     public static void main(String[] args) {
-        int []preorder = {3,9,20,15,7};
-        int []inorder =  {9,3,15,20,7};
+        int[] preorder = {3, 9, 20, 15, 7};
+        int[] inorder = {9, 3, 15, 20, 7};
 
         TreeNode treeNode = new RebuildTreeTest().reConstructBinaryTree(preorder, inorder);
         System.out.println(treeNode.val);
     }
 }
-class  TreeNode{
+
+class TreeNode {
     TreeNode left;
     TreeNode right;
     Integer val;
-    public TreeNode(Integer val){
-        this.val=val;
+
+    public TreeNode(Integer val) {
+        this.val = val;
     }
 }

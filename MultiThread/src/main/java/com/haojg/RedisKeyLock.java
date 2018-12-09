@@ -15,16 +15,18 @@ public class RedisKeyLock {
     private final static long WAIT_INTERVAL_IN_MS = 100;
     private static RedisKeyLock lock;
     private JedisPool jedisPool;
-    private RedisKeyLock(JedisPool pool){
+
+    private RedisKeyLock(JedisPool pool) {
         this.jedisPool = pool;
     }
-    public static RedisKeyLock getInstance(JedisPool pool){
-        if(lock == null){
+
+    public static RedisKeyLock getInstance(JedisPool pool) {
+        if (lock == null) {
             lock = new RedisKeyLock(pool);
         }
         return lock;
     }
- 
+
     public void lock(final String redisKey) {
         Jedis resource = null;
         try {
@@ -51,7 +53,7 @@ public class RedisKeyLock {
                 if (timeoutAt < now) {
                     break;
                 }
-              TimeUnit.NANOSECONDS.sleep(WAIT_INTERVAL_IN_MS);
+                TimeUnit.NANOSECONDS.sleep(WAIT_INTERVAL_IN_MS);
             }
             if (!flag) {
                 throw new RuntimeException("canot acquire lock now ...");
@@ -71,6 +73,7 @@ public class RedisKeyLock {
             }
         }
     }
+
     public boolean unlock(final String redisKey) {
         Jedis resource = null;
         try {

@@ -7,9 +7,9 @@ import java.util.List;
  * @Date: 2018/7/lock 16:46
  */
 public class FindStrTest {
-    public String findLongestWord(String s, List<String> list){
+    public String findLongestWord(String s, List<String> list) {
         String longestWord = "";
-        for(String target : list){
+        for (String target : list) {
             int l1 = longestWord.length(), l2 = target.length();
         }
         return longestWord;

@@ -16,7 +16,7 @@ public class NumberOf1N {
             cnt++;
 //            n &= (n - 1);
 
-            n = n & (n-1);
+            n = n & (n - 1);
         }
         return cnt;
     }

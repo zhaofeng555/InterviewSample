@@ -23,16 +23,16 @@ public class LRUCacheMap extends AbstractMap {
     private final static int default_array_size = 1024;
 
     private int arraySize;
-    private Object[]arrays;
+    private Object[] arrays;
     private volatile boolean flag = true;
-    private final static Long expire_time = 60*60*1000L;
+    private final static Long expire_time = 60 * 60 * 1000L;
     private volatile AtomicInteger size;
 
     public static void main(String[] args) {
         int ct = 95;
         int n = 7;
-        System.out.println(ct%n);
-        System.out.println(ct & (n-1));
+        System.out.println(ct % n);
+        System.out.println(ct & (n - 1));
 
         LRUCacheMap lru = new LRUCacheMap();
         lru.put("hello", "world");
@@ -40,14 +40,14 @@ public class LRUCacheMap extends AbstractMap {
         System.out.println(val);
     }
 
-    public LRUCacheMap(){
+    public LRUCacheMap() {
         arraySize = default_array_size;
         arrays = new Object[arraySize];
-        size=new AtomicInteger(0);
+        size = new AtomicInteger(0);
         executeCheckTime();
     }
 
-    private void executeCheckTime(){
+    private void executeCheckTime() {
         ThreadFactory nameThreadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("check-thread-%d")
                 .setDaemon(true)
@@ -65,37 +65,37 @@ public class LRUCacheMap extends AbstractMap {
 
     @Override
     public Object put(Object key, Object value) {
-        
+
         int hash = hash(key);
         int index = hash % arraySize;
         Node currentNode = (Node) arrays[index];
-        
-        if(currentNode == null){
-            arrays[index]=new Node(null, null, key, value);
-            
-            queue.offer((Node)arrays[index]);
+
+        if (currentNode == null) {
+            arrays[index] = new Node(null, null, key, value);
+
+            queue.offer((Node) arrays[index]);
             sizeUp();
-        }else {
+        } else {
             Node cNode = currentNode;
             Node nNode = cNode;
 
-            if(nNode.key == key){
-                nNode.val=value;
+            if (nNode.key == key) {
+                nNode.val = value;
             }
-            while(nNode.next != null){
-                if(nNode.key == key){
-                    nNode.val=value;
+            while (nNode.next != null) {
+                if (nNode.key == key) {
+                    nNode.val = value;
                     break;
-                }else{
+                } else {
                     sizeUp();
                     Node node = new Node(nNode, null, key, value);
                     queue.offer(currentNode);
-                    cNode.next=node;
+                    cNode.next = node;
                 }
                 nNode = nNode.next;
             }
         }
-        
+
         return null;
     }
 
@@ -103,21 +103,21 @@ public class LRUCacheMap extends AbstractMap {
     public Object get(Object key) {
 
         int hash = hash(key);
-        int index = hash%arraySize;
-        Node currentNode = (Node)arrays[index];
+        int index = hash % arraySize;
+        Node currentNode = (Node) arrays[index];
 
-        if(currentNode==null){
+        if (currentNode == null) {
             return null;
         }
 
-        if(currentNode.next == null){
+        if (currentNode.next == null) {
             currentNode.setUpdateTime(System.currentTimeMillis());
             return currentNode;
         }
 
         Node nNode = currentNode;
-        while(nNode.next != null){
-            if(nNode.key == key){
+        while (nNode.next != null) {
+            if (nNode.key == key) {
                 currentNode.setUpdateTime(System.currentTimeMillis());
                 return nNode;
             }
@@ -133,24 +133,24 @@ public class LRUCacheMap extends AbstractMap {
         int hash = hash(key);
         int index = hash % arraySize;
         Node currentNode = (Node) arrays[index];
-        if(currentNode == null){
+        if (currentNode == null) {
             return null;
         }
 
-        if(currentNode.key == key){
+        if (currentNode.key == key) {
             sizeDown();
-            arrays[index]=null;
+            arrays[index] = null;
 
             queue.poll();
             return currentNode;
         }
 
         Node nNode = currentNode;
-        while (nNode.next != null){
-            if(nNode.key == key){
+        while (nNode.next != null) {
+            if (nNode.key == key) {
                 sizeDown();
 
-                nNode.pre.next=nNode.next;
+                nNode.pre.next = nNode.next;
                 nNode = null;
                 queue.poll();
 
@@ -165,9 +165,9 @@ public class LRUCacheMap extends AbstractMap {
     private void sizeUp() {
         flag = true;
         int curSize = size.incrementAndGet();
-        if(curSize >= MAX_SIZE){
+        if (curSize >= MAX_SIZE) {
             Node node = queue.poll();
-            if(node == null){
+            if (node == null) {
                 throw new RuntimeException("data error !!!!");
             }
 
@@ -176,8 +176,9 @@ public class LRUCacheMap extends AbstractMap {
             lruCallback();
         }
     }
+
     private void sizeDown() {
-        if(queue.size() == 0){
+        if (queue.size() == 0) {
             flag = false;
         }
         size.decrementAndGet();
@@ -195,12 +196,12 @@ public class LRUCacheMap extends AbstractMap {
         private Object val;
         private Long updateTime;
 
-        public Node(Node pre, Node next, Object key, Object val){
-            this.pre=pre;
-            this.next=next;
-            this.key=key;
-            this.val=val;
-            this.updateTime=System.currentTimeMillis();
+        public Node(Node pre, Node next, Object key, Object val) {
+            this.pre = pre;
+            this.next = next;
+            this.key = key;
+            this.val = val;
+            this.updateTime = System.currentTimeMillis();
         }
 
         public Long getUpdateTime() {
@@ -213,36 +214,36 @@ public class LRUCacheMap extends AbstractMap {
 
         @Override
         public String toString() {
-            return "Node:key="+key+", val="+val;
+            return "Node:key=" + key + ", val=" + val;
         }
     }
 
-    public int hash(Object key){
-        int h ;
-        return (key == null)?0:(h=key.hashCode()) ^ (h>>>16);
+    public int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
-    private void lruCallback(){
+    private void lruCallback() {
         System.out.println("call back");
     }
 
-    private  class CheckTimeThread implements Runnable{
+    private class CheckTimeThread implements Runnable {
 
         @Override
         public void run() {
-            while (flag){
-                try{
+            while (flag) {
+                try {
                     Node node = queue.poll();
-                    if(node == null){
+                    if (node == null) {
                         continue;
                     }
                     Long updateTime = node.getUpdateTime();
 
-                    if((updateTime - System.currentTimeMillis()) >= expire_time){
+                    if ((updateTime - System.currentTimeMillis()) >= expire_time) {
                         remove(node.key);
                     }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

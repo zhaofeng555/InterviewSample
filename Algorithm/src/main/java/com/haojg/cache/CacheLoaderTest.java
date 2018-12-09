@@ -18,12 +18,12 @@ import java.util.concurrent.atomic.AtomicLong;
  * Function:
  *
  * @author crossoverJie
- *         Date: 2018/6/12 15:33
+ * Date: 2018/6/12 15:33
  * @since JDK 1.8
  */
 public class CacheLoaderTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(CacheLoaderTest.class);
-    private LoadingCache<Integer, AtomicLong> loadingCache ;
+    private LoadingCache<Integer, AtomicLong> loadingCache;
     private final static Integer KEY = 1000;
 
     AbstractMap map;
@@ -58,20 +58,20 @@ public class CacheLoaderTest {
             TimeUnit.SECONDS.sleep(5);
 
 
-            LOGGER.info("当前缓存值={},缓存大小={}", loadingCache.get(KEY),loadingCache.size());
-            LOGGER.info("缓存的所有内容={}",loadingCache.asMap().toString());
+            LOGGER.info("当前缓存值={},缓存大小={}", loadingCache.get(KEY), loadingCache.size());
+            LOGGER.info("缓存的所有内容={}", loadingCache.asMap().toString());
             loadingCache.get(KEY).incrementAndGet();
 
-        } catch (ExecutionException e ) {
+        } catch (ExecutionException e) {
             LOGGER.error("Exception", e);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) throws InterruptedException {
-        CacheLoaderTest cacheLoaderTest = new CacheLoaderTest() ;
-        cacheLoaderTest.init();
 
+    public static void main(String[] args) throws InterruptedException {
+        CacheLoaderTest cacheLoaderTest = new CacheLoaderTest();
+        cacheLoaderTest.init();
 
 
         while (true) {
