@@ -11,4 +11,14 @@ public abstract class AbstractTest {
     public Object obj = new Object();
 
     public String hello = new String("hello");
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    private boolean flag;
 }

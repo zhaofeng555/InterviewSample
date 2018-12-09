@@ -23,4 +23,6 @@ public class SubTest1 extends AbstractTest {
     public Object getObj() {
         return obj;
     }
+
+
 }
