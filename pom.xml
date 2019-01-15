@@ -17,6 +17,7 @@
         <module>mqtt</module>
         <module>webflux</module>
         <module>Misc</module>
+        <module>leetcode</module>
     </modules>
 
     <parent>
