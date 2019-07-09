@@ -3,6 +3,7 @@ package com.haojg.queue;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DoubleBufferQueue<T> {
 	private List<T> readList = new ArrayList<T>();
 	private List<T> writeList = new ArrayList<T>();
@@ -11,7 +12,7 @@ public class DoubleBufferQueue<T> {
 	private DoubleBufferQueue() {
 	}
 	
-	public static DoubleBufferQueue getInstance() {
+	public static <T>DoubleBufferQueue<T> getInstance() {
 		return bufferQueue;
 	}
 	

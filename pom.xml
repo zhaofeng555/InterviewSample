@@ -18,6 +18,7 @@
         <module>webflux</module>
         <module>Misc</module>
         <module>leetcode</module>
+        <module>MultiThread</module>
     </modules>
 
     <parent>
