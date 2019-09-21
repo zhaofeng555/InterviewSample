@@ -19,6 +19,7 @@
         <module>Misc</module>
         <module>leetcode</module>
         <module>MultiThread</module>
+        <module>tesseract</module>
     </modules>
 
     <parent>
@@ -27,6 +28,14 @@
         <version>2.0.0.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+    </dependencies>
 
 
     <build>
